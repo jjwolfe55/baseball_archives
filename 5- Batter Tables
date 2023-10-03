@@ -8,4 +8,3 @@ batter_id VARCHAR(8) NOT NULL
 );
 
 --//Batter_idx//--
-
