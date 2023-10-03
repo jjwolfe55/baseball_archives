@@ -1,0 +1,25 @@
+--//Player Baserunning//--
+SELECT DISTINCT a.batter_id        
+,a.batter_team
+,a.year
+,(SUM(CASE WHEN c.sb_for_runner_on_1st_flag = 'T' THEN 1 ELSE 0 END)) AS sb 
+FROM batter_id AS a
+JOIN events_view AS c
+ON a.batter_id = c.first_runner AND a.batter_team = c.batting_team
+WHERE a.year = 2022 AND c.year = 2022
+GROUP by a.batter_id, a.batter_team, a.year
+ORDER BY a.batter_id ASC,a.batter_team ASC;
+
+---------------------------
+
+
+SELECT DISTINCT a.batter_id        
+,a.batter_team
+,a.year
+,(SUM(IF(a.batter_id = c.first_runner AND c.sb_for_runner_on_1st_flag = 'T',1,0))) AS sb 
+FROM batter_id AS a
+JOIN events_view AS c
+ON a.batter_id = c.first_runner AND a.batter_team = c.batting_team
+WHERE a.year = 2022
+GROUP by a.batter_id, a.batter_team
+ORDER BY a.batter_id ASC,a.batter_team ASC;
