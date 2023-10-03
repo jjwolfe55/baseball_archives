@@ -1,0 +1,42 @@
+--//Event_View//--
+CREATE VIEW event_view AS
+SELECT game_id
+,event_id
+,substr(game_id,8,4) AS day
+,substr(game_id,4,4) as year
+,substr(game_id,1,3) AS home_team, home_score
+,visiting_team, visiting_score
+,IF(batting_team = 0,visiting_team,substr(game_id,1,3)) AS batting_team
+,IF(batting_team = 0, substr(game_id,1,3), visiting_team) AS pitching_team
+,inning
+,outs
+,balls
+,strikes
+,lineup_position
+,res_batter_id
+,res_batter_hand
+,res_pitcher_id
+,res_pitcher_hand
+,first_runner
+,runner_removed_for_pinch_runner_on_1st AS pinch_first_runner
+,res_pitcher_for_runner_on_1st
+,second_runner
+,runner_removed_for_pinch_runner_on_2nd AS pinch_second_runner
+,res_pitcher_for_runner_on_2nd
+,third_runner, runner_removed_for_pinch_runner_on_3rd AS pinch_third_runner
+,res_pitcher_for_runner_on_3rd, event_type
+,batter_event_flag
+,batted_ball_type, IF(batter_dest = 4,1,0) AS batter_run_scored
+,rbi_on_play
+,sb_for_runner_on_1st_flag, sb_for_runner_on_2nd_flag
+,sb_for_runner_on_3rd_flag
+,cs_for_runner_on_1st_flag
+,cs_for_runner_on_2nd_flag
+,cs_for_runner_on_3rd_flag
+,po_for_runner_on_1st_flag
+,po_for_runner_on_2nd_flag
+,po_for_runner_on_3rd_flag
+,runner_on_1st_dest
+,runner_on_2nd_dest
+,runner_on_3rd_dest
+FROM events;
