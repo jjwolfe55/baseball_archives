@@ -49,6 +49,15 @@ SELECT DISTINCT res_batter_id AS batter_id
 FROM events_view
 ORDER BY res_batter_id ASC,batting_team ASC;
 
+--//batter_idx//--
+CREATE VIEW batter_idx AS
+SELECT DISTINCT res_batter_id AS batter_id 
+,res_batter_hand AS batter_hand  
+,batting_team AS batter_team
+,year AS 'year'
+FROM events_view
+ORDER BY res_batter_id ASC,batting_team ASC;
+
 --//batter_standard//--
 CREATE VIEW batter_standard AS 
 SELECT DISTINCT a.batter_id        
