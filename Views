@@ -1,3 +1,5 @@
+--//Events_View//--
+CREATE VIEW events_view AS
 SELECT game_id
 ,event_id
 ,substr(game_id,8,4) AS day
@@ -38,3 +40,29 @@ SELECT game_id
 ,runner_on_2nd_dest
 ,runner_on_3rd_dest
 FROM events;
+
+--//batter_id//--
+CREATE VIEW batter_id AS
+SELECT DISTINCT res_batter_id AS batter_id     
+,batting_team AS batter_team
+,year AS 'year'
+FROM events_view
+ORDER BY res_batter_id ASC,batting_team ASC;
+
+--//batter_standard//--
+CREATE VIEW batter_standard AS 
+SELECT DISTINCT a.batter_id        
+,a.batter_team
+,a.year
+,(SUM(CASE WHEN b.ab_flag = 'T' OR b.event_type = 14 OR b.event_type = 15 OR b.event_type = 16 OR b.sf_flag = 'T'THEN 1 ELSE 0 END)) AS pa
+,(SUM(CASE WHEN b.ab_flag = 'T' THEN 1 ELSE 0 END)) AS ab
+,(SUM(CASE WHEN b.event_type = 20 THEN 1 ELSE 0 END)) AS 1b
+,(SUM(CASE WHEN b.event_type = 21 THEN 1 ELSE 0 END)) AS 2b
+,(SUM(CASE WHEN b.event_type = 22 THEN 1 ELSE 0 END)) AS 3b
+,(SUM(CASE WHEN b.event_type = 23 THEN 1 ELSE 0 END)) AS hr
+,(SUM(CASE WHEN b.event_type = 14 THEN 1 ELSE 0 END)) AS bb
+,(SUM(CASE WHEN b.event_type = 15 THEN 1 ELSE 0 END)) AS ibb
+,(SUM(CASE WHEN b.event_type = 16 THEN 1 ELSE 0 END)) AS hbp
+,(SUM(CASE WHEN b.event_type = 3 THEN 1 ELSE 0 END)) AS so
+FROM batter_id AS a
+JOIN events_view AS b
