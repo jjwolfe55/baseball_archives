@@ -1,3 +1,4 @@
+--//example of uploading 2022 csv file to mysql//--
 SET GLOBAL local_infile = true;
 LOAD DATA LOCAL INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Retrosheet_Events_Workbooks/2022events.csv"
 INTO TABLE baseball_archives.events
@@ -5,4 +6,3 @@ FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n' 
 IGNORE 1 ROWS;
 
--- example
