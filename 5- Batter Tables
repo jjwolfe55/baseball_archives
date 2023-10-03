@@ -1,1 +1,11 @@
+--//Batter_id//--
+DROP TABLE IF EXISTS baseball_archives.batter_id;
+CREATE TABLE baseball_archives.batter_id (
+batter_id VARCHAR(8) NOT NULL
+,batter_team CHAR(3)
+,season_id SMALLINT UNSIGNED
+,PRIMARY KEY (batter_id,batter_team,season_id)
+);
+
+--//Batter_idx//--
 
