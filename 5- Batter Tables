@@ -8,3 +8,11 @@ batter_id VARCHAR(8) NOT NULL
 );
 
 --//Batter_idx//--
+DROP TABLE IF EXISTS baseball_archives.batter_idx;
+CREATE TABLE baseball_archives.batter_idx (
+batter_id VARCHAR(8) NOT NULL
+,batter_hand ENUM('L','R')
+,batter_team CHAR(3)
+,season_id SMALLINT UNSIGNED
+,PRIMARY KEY (batter_id,batter_hand,batter_team,season_id)
+);
