@@ -4,7 +4,8 @@ SELECT game_id
 ,event_id
 ,substr(game_id,8,4) AS day
 ,substr(game_id,4,4) as year
-,substr(game_id,1,3) AS home_team, home_score
+,substr(game_id,1,3) AS home_team
+,home_score
 ,visiting_team, visiting_score
 ,IF(batting_team = 0,visiting_team,substr(game_id,1,3)) AS batting_team
 ,IF(batting_team = 0, substr(game_id,1,3), visiting_team) AS pitching_team
