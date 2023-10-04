@@ -9,3 +9,26 @@ INSERT INTO baseball_archives.batter_idx (batter_id,batter_hand,team_id,season_i
 SELECT DISTINCT a.res_batter_id,a.res_batter_hand,a.batting_team,a.year
 FROM events_view AS a
 WHERE a.year = 2022;              <--//Use this line to choose the specific year desired from the events_view//--
+
+--//Batter_Standard//--
+INSERT INTO baseball_archives.batter_standard (batter_id,team_id,season_id,pa,ab,1b,2b,3b,hr,bb,ibb,hbp,so,rbi)
+SELECT DISTINCT a.batter_id
+,a.team_id
+,a.season_id
+,(SUM(CASE WHEN b.ab_flag = 'T' OR b.event_type = 14 OR b.event_type = 15 OR b.event_type = 16 OR b.sf_flag = 'T' OR sh_flag = 'T' THEN 1 ELSE 0 END)) AS pa
+,(SUM(CASE WHEN b.ab_flag = 'T' THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.event_type = 20 THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.event_type = 21 THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.event_type = 22 THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.event_type = 23 THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.event_type = 14 THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.event_type = 15 THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.event_type = 16 THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.event_type = 3 THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.rbi_on_play IS NOT NULL THEN rbi_on_play ELSE 0 END))
+FROM batter_id AS a
+JOIN events_view AS b
+ON a.batter_id = b.res_batter_id AND a.team_id = b.batting_team AND a.season_id = b.year
+WHERE a.season_id = 2022           <--//Use this line to choose the specific year desired from the events_view//--
+GROUP BY a.batter_id,a.team_id,a.season_id
+ORDER BY pa;
