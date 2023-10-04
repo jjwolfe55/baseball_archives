@@ -16,3 +16,23 @@ batter_id VARCHAR(8) NOT NULL
 ,season_id SMALLINT UNSIGNED
 ,PRIMARY KEY (batter_id,batter_hand,batter_team,season_id)
 );
+
+--//Batter_Standard//--
+DROP TABLE IF EXISTS baseball_archives.batter_standard;
+CREATE TABLE batter_standard (
+batter_id VARCHAR(8) NOT NULL
+,team_id CHAR(3)
+,season_id SMALLINT UNSIGNED
+,pa SMALLINT UNSIGNED
+,ab SMALLINT UNSIGNED
+,1b SMALLINT UNSIGNED
+,2b SMALLINT UNSIGNED
+,3b SMALLINT UNSIGNED
+,hr SMALLINT UNSIGNED
+,bb SMALLINT UNSIGNED
+,IBB SMALLINT UNSIGNED
+,hbp SMALLINT UNSIGNED
+,so SMALLINT UNSIGNED
+,rbi SMALLINT UNSIGNED
+,PRIMARY KEY(batter_id,team_id,season_id)
+);
