@@ -15,7 +15,7 @@ INSERT INTO baseball_archives.batter_standard (batter_id,team_id,season_id,pa,ab
 SELECT DISTINCT a.batter_id
 ,a.team_id
 ,a.season_id
-,(SUM(CASE WHEN b.ab_flag = 'T' OR b.event_type = 14 OR b.event_type = 15 OR b.event_type = 16 OR b.sf_flag = 'T' OR sh_flag = 'T' THEN 1 ELSE 0 END)) AS pa
+,(SUM(CASE WHEN b.ab_flag = 'T' OR b.event_type = 14 OR b.event_type = 15 OR b.event_type = 16 OR b.sf_flag = 'T' OR b.sh_flag = 'T' THEN 1 ELSE 0 END)) AS pa
 ,(SUM(CASE WHEN b.ab_flag = 'T' THEN 1 ELSE 0 END))
 ,(SUM(CASE WHEN b.event_type = 20 THEN 1 ELSE 0 END))
 ,(SUM(CASE WHEN b.event_type = 21 THEN 1 ELSE 0 END))
