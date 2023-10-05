@@ -61,3 +61,21 @@ batter_id VARCHAR(8) NOT NULL
 ,sh SMALLINT UNSIGNED
 ,PRIMARY KEY(batter_id,batter_hand,team_id,season_id)
 );
+
+--//batter_rate//--
+DROP TABLE IF EXISTS baseball_archives.batter_rate;
+CREATE TABLE baseball_archives.batter_rate (
+batter_id VARCHAR(8) NOT NULL
+,team_id CHAR(3)
+,season_id SMALLINT UNSIGNED
+,pa SMALLINT UNSIGNED
+,ab SMALLINT UNSIGNED
+,avg DECIMAL(4,3)
+,obp DECIMAL (4,3)
+,slg DECIMAL (4,3)
+,ops DECIMAL (4,3)
+,iso DECIMAL (4,3)
+,bb_per_pa DECIMAL (3,2)
+,so_per_pa DECIMAL (3,2)
+,PRIMARY KEY (batter_id,team_id,season_id)
+);
