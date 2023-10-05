@@ -1,3 +1,9 @@
+--//Batter_Ratios//--
+SELECT batter_id, team_id, season_id, pa, ab, ((1b+2b+3b+hr)/ab), ((1b+2b+3b+hr+bb+ibb+hbp)/pa),((1b+2b+2b+3b+3b+3b+hr+hr+hr+hr)/ab),((1b+2b+3b+hr+bb+ibb+hbp)/pa)+((1b+2b+2b+3b+3b+3b+hr+hr+hr+hr)/ab),((bb+ibb)/pa),(so/pa)
+FROM batter_standard
+GROUP BY batter_id, team_id, season_id
+ORDER BY pa DESC;
+
 --//Player Baserunning//--
 SELECT DISTINCT a.batter_id        
 ,a.batter_team
