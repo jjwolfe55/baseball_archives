@@ -16,3 +16,48 @@ pitcher_id VARCHAR(8) NOT NULL
 ,season_id SMALLINT UNSIGNED
 ,PRIMARY KEY (pitcher_id,pitcher_hand,team_id,season_id)
 );
+
+--//pitcher_standard//--
+DROP TABLE IF EXISTS baseball_archives.pitcher_standard;
+CREATE TABLE pitcher_standard (
+pitcher_id VARCHAR(8) NOT NULL
+,team_id CHAR(3)
+,season_id SMALLINT UNSIGNED
+,pa SMALLINT UNSIGNED
+,ab SMALLINT UNSIGNED
+,1b SMALLINT UNSIGNED
+,2b SMALLINT UNSIGNED
+,3b SMALLINT UNSIGNED
+,hr SMALLINT UNSIGNED
+,bb SMALLINT UNSIGNED
+,IBB SMALLINT UNSIGNED
+,hbp SMALLINT UNSIGNED
+,so SMALLINT UNSIGNED
+,rbi SMALLINT UNSIGNED
+,sf SMALLINT UNSIGNED
+,sh SMALLINT UNSIGNED
+,PRIMARY KEY(pitcher_id,team_id,season_id)
+);
+
+--//pitcher_standardx//--
+DROP TABLE IF EXISTS baseball_archives.pitcher_standardx;
+CREATE TABLE pitcher_standardx (
+pitcher_id VARCHAR(8) NOT NULL
+,pitcher_hand ENUM('L','R')
+,team_id CHAR(3)
+,season_id SMALLINT UNSIGNED
+,pa SMALLINT UNSIGNED
+,ab SMALLINT UNSIGNED
+,1b SMALLINT UNSIGNED
+,2b SMALLINT UNSIGNED
+,3b SMALLINT UNSIGNED
+,hr SMALLINT UNSIGNED
+,bb SMALLINT UNSIGNED
+,IBB SMALLINT UNSIGNED
+,hbp SMALLINT UNSIGNED
+,so SMALLINT UNSIGNED
+,rbi SMALLINT UNSIGNED
+,sf SMALLINT UNSIGNED
+,sh SMALLINT UNSIGNED
+,PRIMARY KEY(pitcher_id,pitcher_hand,team_id,season_id)
+);
