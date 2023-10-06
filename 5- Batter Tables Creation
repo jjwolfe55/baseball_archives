@@ -101,7 +101,7 @@ batter_id VARCHAR(8) NOT NULL
 
 --//batter_career_standard//--
 DROP TABLE IF EXISTS baseball_archives.batter_career_standard;
-CREATE TABLE batter_career_standard (
+CREATE TABLE baseball_archives.batter_career_standard (
 batter_id VARCHAR(8) NOT NULL
 ,pa SMALLINT UNSIGNED
 ,ab SMALLINT UNSIGNED
@@ -121,7 +121,7 @@ batter_id VARCHAR(8) NOT NULL
 
 --//baseball_career_standardx//--
 DROP TABLE IF EXISTS baseball_archives.batter_career_standardx;
-CREATE TABLE batter_career_standardx (
+CREATE TABLE baseball_archives.batter_career_standardx (
 batter_id VARCHAR(8) NOT NULL
 ,batter_hand ENUM('L','R')
 ,pa SMALLINT UNSIGNED
