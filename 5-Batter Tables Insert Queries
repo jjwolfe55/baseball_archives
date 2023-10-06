@@ -77,3 +77,21 @@ SELECT a.batter_id
 ,(so/pa)
 FROM batter_standard AS a
 WHERE a.season_id = 2022;           <--//Use this line to choose the specific year desired from the events_view//--
+
+--//batter_ratex//--
+INSERT INTO batter_ratex (batter_id,batter_hand,team_id,season_id,pa,ab,avg,obp,slg,ops,iso,bb_per_pa,so_per_pa)
+SELECT a.batter_id
+,a.batter_hand
+,a.team_id
+,a.season_id
+,a.pa
+,a.ab
+,(CASE WHEN a.ab = 0 THEN NULL ELSE COALESCE((a.1b+a.2b+a.3b+a.hr)/(NULLIF(a.ab,0)),0) END)
+,((a.1b+a.2b+a.3b+a.hr+a.bb+a.ibb+a.hbp)/(a.pa-a.sh))
+,((a.1b+a.2b+a.2b+a.3b+a.3b+a.3b+a.hr+a.hr+a.hr+a.hr)/a.ab)
+,(((a.1b+a.2b+a.3b+a.hr+a.bb+a.ibb+a.hbp)/(a.pa-a.sh)) + ((a.1b+a.2b+a.2b+a.3b+a.3b+a.3b+a.hr+a.hr+a.hr+a.hr)/a.ab))
+,(((a.1b+a.2b+a.2b+a.3b+a.3b+a.3b+a.hr+a.hr+a.hr+a.hr)/a.ab) - ((a.1b+a.2b+a.3b+a.hr)/a.ab))
+,((bb+ibb)/pa)
+,(so/pa)
+FROM batter_standardx AS a
+WHERE a.season_id = 2022;           <--//Use this line to choose the specific year desired from the events_view//--
