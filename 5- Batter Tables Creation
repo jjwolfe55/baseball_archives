@@ -100,8 +100,8 @@ batter_id VARCHAR(8) NOT NULL
 );
 
 --//batter_career//--
-DROP TABLE IF EXISTS baseball_archives.batter_career;
-CREATE TABLE batter_career (
+DROP TABLE IF EXISTS baseball_archives.batter_career_standard;
+CREATE TABLE batter_career_standard (
 batter_id VARCHAR(8) NOT NULL
 ,pa SMALLINT UNSIGNED
 ,ab SMALLINT UNSIGNED
