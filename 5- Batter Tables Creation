@@ -118,3 +118,24 @@ batter_id VARCHAR(8) NOT NULL
 ,sh SMALLINT UNSIGNED
 ,PRIMARY KEY(batter_id)
 );
+
+--//baseball_career_standardx//--
+DROP TABLE IF EXISTS baseball_archives.batter_career_standardx;
+CREATE TABLE batter_career_standardx (
+batter_id VARCHAR(8) NOT NULL
+,batter_hand ENUM('L','R')
+,pa SMALLINT UNSIGNED
+,ab SMALLINT UNSIGNED
+,1b SMALLINT UNSIGNED
+,2b SMALLINT UNSIGNED
+,3b SMALLINT UNSIGNED
+,hr SMALLINT UNSIGNED
+,bb SMALLINT UNSIGNED
+,IBB SMALLINT UNSIGNED
+,hbp SMALLINT UNSIGNED
+,so SMALLINT UNSIGNED
+,rbi SMALLINT UNSIGNED
+,sf SMALLINT UNSIGNED
+,sh SMALLINT UNSIGNED
+,PRIMARY KEY(batter_id,batter_hand)
+);
