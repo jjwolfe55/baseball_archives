@@ -62,7 +62,7 @@ GROUP BY a.batter_id,a.batter_hand,a.team_id,a.season_id
 ORDER BY pa;
 
 --//batter_rate//--
-INSERT INTO batter_rate (batter_id,team_id,season_id,pa,ab,avg,obp,slg,ops,iso,bb_per_pa,so_per_pa)
+INSERT INTO baseball_archives.batter_rate (batter_id,team_id,season_id,pa,ab,avg,obp,slg,ops,iso,bb_per_pa,so_per_pa)
 SELECT a.batter_id
 ,a.team_id
 ,a.season_id
@@ -79,7 +79,7 @@ FROM batter_standard AS a
 WHERE a.season_id = 2022;           <--//Use this line to choose the specific year desired from the events_view//--
 
 --//batter_ratex//--
-INSERT INTO batter_ratex (batter_id,batter_hand,team_id,season_id,pa,ab,avg,obp,slg,ops,iso,bb_per_pa,so_per_pa)
+INSERT INTO baseball_archives.batter_ratex (batter_id,batter_hand,team_id,season_id,pa,ab,avg,obp,slg,ops,iso,bb_per_pa,so_per_pa)
 SELECT a.batter_id
 ,a.batter_hand
 ,a.team_id
@@ -95,3 +95,24 @@ SELECT a.batter_id
 ,(so/pa)
 FROM batter_standardx AS a
 WHERE a.season_id = 2022;           <--//Use this line to choose the specific year desired from the events_view//--
+
+--//batter_career_standard//--
+INSERT INTO baseball_archives.batter_career_standard (batter_id,pa,ab,1b,2b,3b,hr,bb,ibb,hbp,so,rbi,sf,sh)
+SELECT DISTINCT a.batter_id
+,SUM(a.pa)
+,SUM(a.ab)
+,SUM(a.1b)
+,SUM(a.2b)
+,SUM(a.3b)
+,SUM(a.hr)
+,SUM(a.bb)
+,SUM(a.ibb)
+,SUM(a.hbp)
+,SUM(a.so)
+,SUM(a.rbi)
+,SUM(a.sf)
+,SUM(a.sh)
+FROM batter_standard AS a
+WHERE a.season_id = 2022;           <--//Use this line to choose the specific year desired from the events_view//--
+GROUP BY a.batter_id
+ORDER BY sum(a.pa) DESC;
