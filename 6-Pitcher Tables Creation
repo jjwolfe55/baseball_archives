@@ -79,3 +79,22 @@ pitcher_id VARCHAR(8) NOT NULL
 ,so_per_pa DECIMAL (3,2)
 ,PRIMARY KEY (pitcher_id,team_id,season_id)
 );
+
+--//pitcher_ratex//--
+DROP TABLE IF EXISTS baseball_archives.pitcher_ratex;
+CREATE TABLE baseball_archives.pitcher_ratex (
+pitcher_id VARCHAR(8) NOT NULL
+,pitcher_hand ENUM('L','R')
+,team_id CHAR(3)
+,season_id SMALLINT UNSIGNED
+,pa SMALLINT UNSIGNED
+,ab SMALLINT UNSIGNED
+,avg DECIMAL(4,3)
+,obp DECIMAL (4,3)
+,slg DECIMAL (4,3)
+,ops DECIMAL (4,3)
+,iso DECIMAL (4,3)
+,bb_per_pa DECIMAL (3,2)
+,so_per_pa DECIMAL (3,2)
+,PRIMARY KEY (pitcher_id,pitcher_hand,team_id,season_id)
+);
