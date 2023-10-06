@@ -98,3 +98,44 @@ pitcher_id VARCHAR(8) NOT NULL
 ,so_per_pa DECIMAL (3,2)
 ,PRIMARY KEY (pitcher_id,pitcher_hand,team_id,season_id)
 );
+
+--//pitcher_career_standard//--
+DROP TABLE IF EXISTS baseball_archives.pitcher_career_standard;
+CREATE TABLE baseball_archives.pitcher_career_standard (
+pitcher_id VARCHAR(8) NOT NULL
+,pa SMALLINT UNSIGNED
+,ab SMALLINT UNSIGNED
+,1b SMALLINT UNSIGNED
+,2b SMALLINT UNSIGNED
+,3b SMALLINT UNSIGNED
+,hr SMALLINT UNSIGNED
+,bb SMALLINT UNSIGNED
+,IBB SMALLINT UNSIGNED
+,hbp SMALLINT UNSIGNED
+,so SMALLINT UNSIGNED
+,rbi SMALLINT UNSIGNED
+,sf SMALLINT UNSIGNED
+,sh SMALLINT UNSIGNED
+,PRIMARY KEY(pitcher_id)
+);
+
+--//pitcher_career_standardx//--
+DROP TABLE IF EXISTS baseball_archives.pitcher_career_standardx;
+CREATE TABLE baseball_archives.pitcher_career_standardx (
+pitcher_id VARCHAR(8) NOT NULL
+,pitcher_hand ENUM('L','R')
+,pa SMALLINT UNSIGNED
+,ab SMALLINT UNSIGNED
+,1b SMALLINT UNSIGNED
+,2b SMALLINT UNSIGNED
+,3b SMALLINT UNSIGNED
+,hr SMALLINT UNSIGNED
+,bb SMALLINT UNSIGNED
+,IBB SMALLINT UNSIGNED
+,hbp SMALLINT UNSIGNED
+,so SMALLINT UNSIGNED
+,rbi SMALLINT UNSIGNED
+,sf SMALLINT UNSIGNED
+,sh SMALLINT UNSIGNED
+,PRIMARY KEY(pitcher_id,pitcher_hand)
+);
