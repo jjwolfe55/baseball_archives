@@ -36,3 +36,26 @@ GROUP BY a.pitcher_id,a.team_id,a.season_id
 ORDER BY pa;
 
 --//pitcher_standardx//--
+INSERT INTO baseball_archives.pitcher_standardx (pitcher_id,pitcher_hand,team_id,season_id,pa,ab,1b,2b,3b,hr,bb,ibb,hbp,so,rbi,sf,sh)
+SELECT DISTINCT a.pitcher_id
+,a.pitcher_hand
+,a.team_id
+,a.season_id
+,(SUM(CASE WHEN b.ab_flag = 'T' OR b.event_type = 14 OR b.event_type = 15 OR b.event_type = 16 OR b.sf_flag = 'T' OR b.sh_flag = 'T' THEN 1 ELSE 0 END)) AS pa
+,(SUM(CASE WHEN b.ab_flag = 'T' THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.event_type = 20 THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.event_type = 21 THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.event_type = 22 THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.event_type = 23 THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.event_type = 14 THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.event_type = 15 THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.event_type = 16 THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.event_type = 3 THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.rbi_on_play IS NOT NULL THEN rbi_on_play ELSE 0 END))
+,(SUM(CASE WHEN b.sf_flag = 'T' THEN 1 ELSE 0 END))
+,(SUM(CASE WHEN b.sh_flag = 'T' THEN 1 ELSE 0 END))
+FROM pitcher_idx AS a
+JOIN events_view AS b
+ON a.pitcher_id = b.res_pitcher_id AND a.pitcher_hand = b.res_pitcher_hand AND a.team_id = b.pitching_team AND a.season_id = b.year
+GROUP BY a.pitcher_id,a.pitcher_hand,a.team_id,a.season_id
+ORDER BY pa;
