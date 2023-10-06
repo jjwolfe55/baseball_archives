@@ -95,3 +95,46 @@ SELECT a.pitcher_id
 ,(so/pa)
 FROM pitcher_standardx AS a
 WHERE a.season_id = 2022;                <--//Use this line to choose the specific year desired from the events_view//--
+
+--//pitcher_career_standard//--
+INSERT INTO baseball_archives.pitcher_career_standard (pitcher_id,pa,ab,1b,2b,3b,hr,bb,ibb,hbp,so,rbi,sf,sh)
+SELECT DISTINCT a.pitcher_id
+,SUM(a.pa)
+,SUM(a.ab)
+,SUM(a.1b)
+,SUM(a.2b)
+,SUM(a.3b)
+,SUM(a.hr)
+,SUM(a.bb)
+,SUM(a.ibb)
+,SUM(a.hbp)
+,SUM(a.so)
+,SUM(a.rbi)
+,SUM(a.sf)
+,SUM(a.sh)
+FROM pitcher_standard AS a
+WHERE a.season_id = 2022;                <--//Use this line to choose the specific year desired from the events_view//--
+GROUP BY a.pitcher_id
+ORDER BY sum(a.pa) DESC;
+
+--//pitcher_career_standardx//--
+INSERT INTO baseball_archives.pitcher_career_standardx (pitcher_id,pitcher_hand,pa,ab,1b,2b,3b,hr,bb,ibb,hbp,so,rbi,sf,sh)
+SELECT DISTINCT a.pitcher_id
+,a.pitcher_hand
+,SUM(a.pa)
+,SUM(a.ab)
+,SUM(a.1b)
+,SUM(a.2b)
+,SUM(a.3b)
+,SUM(a.hr)
+,SUM(a.bb)
+,SUM(a.ibb)
+,SUM(a.hbp)
+,SUM(a.so)
+,SUM(a.rbi)
+,SUM(a.sf)
+,SUM(a.sh)
+FROM pitcher_standardx AS a
+WHERE a.season_id = 2022;                <--//Use this line to choose the specific year desired from the events_view//--
+GROUP BY a.pitcher_id, a.pitcher_hand
+ORDER BY sum(a.pa) DESC;
