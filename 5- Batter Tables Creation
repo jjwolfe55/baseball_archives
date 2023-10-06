@@ -99,7 +99,7 @@ batter_id VARCHAR(8) NOT NULL
 ,PRIMARY KEY (batter_id,batter_hand,team_id,season_id)
 );
 
---//batter_career//--
+--//batter_career_standard//--
 DROP TABLE IF EXISTS baseball_archives.batter_career_standard;
 CREATE TABLE batter_career_standard (
 batter_id VARCHAR(8) NOT NULL
