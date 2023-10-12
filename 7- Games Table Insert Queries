@@ -2,9 +2,9 @@
 INSERT INTO baseball_archives.games_inning_results (game_id,inning,day,year,home_team,home_start_score,home_end_score,home_score_change,visiting_team,visiting_start_score,visiting_end_score,visiting_score_change)
 SELECT a.game_id
 ,a.inning
-,substr(a.game_id,8,4)
-,substr(a.game_id,4,4)
-,substr(a.game_id,1,3)
+,a.day
+,a.year
+,a.home_team
 ,MIN(a.home_score)
 ,MAX(a.home_score)
 ,MAX(a.home_score) - MIN(home_score)
@@ -12,6 +12,6 @@ SELECT a.game_id
 ,MIN(a.visiting_score)
 ,MAX(a.visiting_score)
 ,MAX(a.visiting_score) - MIN(visiting_score)
-FROM events AS a
-WHERE 
+FROM events_view AS a
+WHERE a.year = 2022
 GROUP BY a.game_id,a.inning;
