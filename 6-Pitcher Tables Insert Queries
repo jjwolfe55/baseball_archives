@@ -2,13 +2,13 @@
 INSERT INTO baseball_archives.pitcher_id (pitcher_id,team_id,season_id)
 SELECT DISTINCT a.res_pitcher_id,a.pitching_team,a.year
 FROM events_view AS a
-WHERE a.season_id = 2022;                  <--//Use this line to choose the specific year desired from the events_view//--
+WHERE a.year= 2022;                  <--//Use this line to choose the specific year desired from the events_view//--
 
 --//pitcher_idx//--
 INSERT INTO baseball_archives.pitcher_idx (pitcher_id,pitcher_hand,team_id,season_id)
 SELECT DISTINCT a.res_pitcher_id,a.res_pitcher_hand,a.pitching_team,a.year
 FROM events_view AS a
-WHERE a.season_id = 2022;                  <--//Use this line to choose the specific year desired from the events_view//-- 
+WHERE a.year = 2022;                  <--//Use this line to choose the specific year desired from the events_view//-- 
 
 --//pitcher_standard//--
 INSERT INTO baseball_archives.pitcher_standard (pitcher_id,team_id,season_id,pa,ab,1b,2b,3b,hr,bb,ibb,hbp,so,rbi,sf,sh)
