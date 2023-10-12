@@ -1,17 +1,4 @@
-SELECT game_id
-,inning
-,substr(game_id,8,4) AS day
-,substr(game_id,4,4) as year
-,substr(game_id,1,3) AS home_team
-,MIN(home_score) AS home_start_score
-,MAX(home_score) AS home_end_score
-,MAX(home_score) - MIN(home_score) AS home_runs_scored
-,visiting_team
-,MIN(visiting_score) AS visiting_start_score
-,MAX(visiting_score) AS visiting_end_score
-,MAX(visiting_score) - MIN(visiting_score) AS visiting_runs_scored
-FROM events
-GROUP BY game_id,inning;
+
 
 --//Player Baserunning//--
 SELECT DISTINCT a.batter_id        
