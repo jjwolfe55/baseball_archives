@@ -15,3 +15,22 @@ SELECT a.game_id
 FROM events_view AS a
 WHERE a.year = 2022                  <--//Use this line to choose the specific year desired from the events_view//-- 
 GROUP BY a.game_id,a.inning;
+
+--//games_inning_resultsx//--
+INSERT INTO baseball_archives.games_inning_resultsx (game_id,inning,batting_team,day,year,home_team,home_start_score,home_end_score,home_score_change,visiting_team,visiting_start_score,visiting_end_score,visiting_score_change)
+SELECT a.game_id
+,a.inning
+,a.batting_team
+,a.day
+,a.year
+,a.home_team
+,MIN(a.home_score)
+,MAX(a.home_score)
+,MAX(a.home_score) - MIN(home_score)
+,a.visiting_team
+,MIN(a.visiting_score)
+,MAX(a.visiting_score)
+,MAX(a.visiting_score) - MIN(visiting_score)
+FROM events_view AS a
+WHERE a.year = 2022                  <--//Use this line to choose the specific year desired from the events_view//--
+GROUP BY a.game_id,a.inning,a.batting_team;
