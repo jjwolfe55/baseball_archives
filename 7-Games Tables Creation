@@ -15,3 +15,22 @@ game_id VARCHAR(12)
 ,visiting_score_change TINYINT
 ,PRIMARY KEY(game_id,inning)
 );
+
+--//games_inning_resultsx//--
+DROP TABLE IF EXISTS baseball_archives.games_inning_resultsx;
+CREATE TABLE baseball_archives.games_inning_resultsx (
+game_id VARCHAR(12)
+,inning TINYINT NOT NULL
+,batting_team VARCHAR(3)
+,day VARCHAR(4)
+,year VARCHAR(4)
+,home_team VARCHAR(3)
+,home_start_score TINYINT
+,home_end_score TINYINT
+,home_score_change TINYINT
+,visiting_team VARCHAR(3)
+,visiting_start_score TINYINT
+,visiting_end_score TINYINT
+,visiting_score_change TINYINT
+,PRIMARY KEY(game_id,inning,batting_team)
+);
